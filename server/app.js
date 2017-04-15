@@ -1,5 +1,8 @@
 var express = require('express');
 var db = require('./db');
+//added from models
+var mysql = require('mysql');
+
 
 // Middleware
 var morgan = require('morgan');
@@ -14,6 +17,12 @@ module.exports.app = app;
 // Set what we are listening on.
 app.set('port', 3000);
 
+
+router.get('/classes/messages',function(req,res) {
+  dbConnection.query('SELECT * FROM messages', function(err, results){
+    res.render('messages', {messages: results});
+  });
+});
 // Logging and parsing
 app.use(morgan('dev'));
 app.use(parser.json());
