@@ -2,6 +2,7 @@ var express = require('express');
 var db = require('./db');
 //added from models
 var mysql = require('mysql');
+var cors = require('cors');
 
 
 // Middleware
@@ -17,14 +18,19 @@ module.exports.app = app;
 // Set what we are listening on.
 app.set('port', 3000);
 
+// Deal with CORS
+var corsOptions = {
+  origin: 'localhost'
+}
 
-router.get('/classes/messages',function(req,res) {
-  dbConnection.query('SELECT * FROM messages', function(err, results){
-    res.render('messages', {messages: results});
-  });
-});
+app.use(cors(corsOptions))
+
 // Logging and parsing
 app.use(morgan('dev'));
+// app.use(parser.urlencoded({
+//   extended: true
+// }));
+
 app.use(parser.json());
 
 // Set up our routes

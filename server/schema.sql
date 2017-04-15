@@ -27,6 +27,11 @@ CREATE TABLE messages (
   FOREIGN KEY(user) REFERENCES users(userID)
 );
 
+INSERT INTO users(username) VALUES ('user1');
+INSERT INTO rooms(roomname) VALUES ('hackreactor');
+
+-- INSERT INTO messages(room,user,message) VALUES(1,1, 'yoyoy');
+
 
 /*  Execute this file from the command line by typing:
  *    mysql -u root -p < server/schema.sql

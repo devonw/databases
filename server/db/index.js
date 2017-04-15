@@ -16,5 +16,5 @@ dbConnection.connect(function() {
   console.log("Database connected");
 });
 
-module.export = dbConnection;
+module.exports = dbConnection;
 
